@@ -1,4 +1,4 @@
-#!/home/germaaan/restaurantes/bin/python2
+#!/home/germaaan/nuevo/restaurantes/bin/python2
 from django.core import management
 
 if __name__ == "__main__":
