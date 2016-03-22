@@ -1,4 +1,5 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 
 def index(request):
-    return HttpResponse("Hola mundo")
+    context_dict = {'boldmessage': "I am bold font from the context"}
+    return render(request, 'app_restaurantes/index.html', context_dict)
