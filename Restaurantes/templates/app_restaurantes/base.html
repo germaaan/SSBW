@@ -764,21 +764,22 @@
     <div class="top-bar-right">
       <ul class="menu">
         <li>
-          <a class="button" data-open="auth">Acceder</a>
+          <a class="button" data-open="auth">Acceso</a>
         </li>
 
-        <div class="reveal" id="auth" data-reveal aria-hidden="true" role="dialog">
+        <div id="auth" class="reveal" data-reveal aria-labelledby="Acceso" aria-hidden="true" role="dialog">
           <div class="row">
             <div class="large-6 columns auth-plain">
               <div class="signup-panel left-solid">
-                <p class="welcome">Usuarios registrados</p>
-                <form>
+                <p class="text-center">Usuarios registrados</p>
+                <form method="post" action="/app/login/">
+                  {% csrf_token %}
                   <div class="row collapse">
                     <div class="small-2 columns">
                       <span class="prefix"><i class="fi-torso-female"></i></span>
                     </div>
                     <div class="small-10 columns">
-                      <input type="text" placeholder="usuario">
+                      <input name="usuario" type="text" placeholder="usuario">
                     </div>
                   </div>
                   <div class="row collapse">
@@ -786,19 +787,19 @@
                       <span class="prefix"><i class="fi-lock"></i></span>
                     </div>
                     <div class="small-10 columns">
-                      <input type="text" placeholder="contraseña">
+                      <input name="password" type="password" placeholder="password">
                     </div>
                   </div>
+                  <input type="submit" class="button expanded" value="Iniciar sesión">
                 </form>
-                <a href="#" class="button ">Iniciar sesión</a>
               </div>
             </div>
             <div class="large-6 columns auth-plain">
               <div class="signup-panel newusers">
-                <p class="welcome">¿Nuevo usuario?</p>
+                <p class="text-center">¿Nuevo usuario?</p>
                 <p>Es necesario que se registre para tener un acceso completo al portal.</p>
-                <br>
-                <a href="#" class="button ">Registrarse</a></br>
+                <br style="line-height: 44px;">
+                <a href="#" class="button expanded">Registrarse</a>
               </div>
             </div>
           </div>
