@@ -6,8 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Restaurantes - Aplicación sobre restaurantes</title>
-  <link rel="stylesheet" href="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
-  <link rel="stylesheet" href="{% static "css/style.css" %}">
+  <link rel="stylesheet" href="{% static "css/foundation.min.css" %}">
   <link rel="shortcut icon" type="image/png" href="{% static "img/favicon.ico" %}"/>
 </head>
 
@@ -20,7 +19,7 @@
     </div>
     <div class="top-bar-right">
       <ul class="menu">
-        <li><a href="#">Acceder</a></li>
+        <li><a href="#" data-reveal-id="registro">Acceder</a></li>
       </ul>
     </div>
   </div>
@@ -83,8 +82,8 @@
   </div>
   <hr>
 
-  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-  <script src="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+  <script src="{% static "js/jquery.min.js" %}"></script>
+  <script src="{% static "js/foundation.min.js" %}"></script>
   <script>
     $(document).foundation();
   </script>
