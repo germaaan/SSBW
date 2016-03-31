@@ -6,6 +6,7 @@ class Restaurante (models.Model):
 	nombre = models.CharField(max_length=50, unique=True)
 	direccion = models.CharField(max_length=100)
 	correo = models.CharField(max_length=100)
+	votos = models.IntegerField(default=0)
 
 	def __unicode__(self):
 		return self.nombre
