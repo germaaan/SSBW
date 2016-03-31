@@ -5,7 +5,7 @@ class Restaurante (models.Model):
 	slug = models.SlugField(unique=True)
 	nombre = models.CharField(max_length=50, unique=True)
 	direccion = models.CharField(max_length=100)
-	correo = models.CharField(max_length=100)
+	foto = models.CharField(max_length=60, blank=True)
 	votos = models.IntegerField(default=0)
 
 	def __unicode__(self):

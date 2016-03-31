@@ -4,7 +4,8 @@ from django.http import JsonResponse
 from app_restaurantes.models import Restaurante, Plato
 
 def index(request):
-    context = {'mensaje': 'Hola mundo!'}
+    r = Restaurante.objects.all()
+    context = {'mensaje': 'Hola mundo!', 'restaurantes': r[:4]}
     return render(request, 'app_restaurantes/base.html', context)
 
 def login(request):

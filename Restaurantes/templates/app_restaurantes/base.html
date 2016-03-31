@@ -749,6 +749,20 @@
       -webkit-animation-delay: 700ms!important;
       animation-delay: 700ms!important;
     }
+
+    ul#votacion,
+    ul#votacion li {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul#votacion li {
+      display: inline-block;
+      vertical-align: middle;
+      margin: auto;
+      width: 100px;
+      min-height: 100px;
+    }
   </style>
 
   <div class="top-bar">
@@ -836,30 +850,17 @@
     <hr>
   </div>
   <div class="row small-up-2 large-up-4">
-    <div class="column">
-      <img class="thumbnail" src="{% static "img/restaurante_01.jpg" %}">
-      <h5>Restaurante Uno</h5>
-      <p>De 15€ a 25€</p>
-      <a href="#" class="button expanded">Votar</a>
-    </div>
-    <div class="column">
-      <img class="thumbnail" src="{% static "img/restaurante_02.jpg" %}">
-      <h5>Restaurante Dos</h5>
-      <p>De 15€ a 25€</p>
-      <a href="#" class="button expanded">Votar</a>
-    </div>
-    <div class="column">
-      <img class="thumbnail" src="{% static "img/restaurante_03.jpg" %}">
-      <h5>Restaurante Tres</h5>
-      <p>De 25€ a 35€</p>
-      <a href="#" class="button expanded">Votar</a>
-    </div>
-    <div class="column">
-      <img class="thumbnail" src="{% static "img/restaurante_04.jpg" %}">
-      <h5>Restaurante Cuatro</h5>
-      <p>Más de 35€</p>
-      <a href="#" class="button expanded">Votar</a>
-    </div>
+    {% for r in restaurantes %}
+      <div class="column">
+        <img class="thumbnail" src="{% static r.foto %}">
+        <h5>{{ r.nombre }}</h5>
+        <p>{{ r.direccion }}</p>
+        <ul id="votacion">
+          <li><a href="/app/votar/?restaurante=Restaurante%201" class="button">Votar</a></li>
+          <li><input type="text" name="voto" style="width: 50px; background-color: white" value="{{ r.votos }}" disabled></li>
+        </ul>
+      </div>
+    {% endfor %}
   </div>
   <hr>
   <div class="row column">
