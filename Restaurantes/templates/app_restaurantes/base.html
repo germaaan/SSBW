@@ -10,7 +10,7 @@
 
     {% load staticfiles %}
     <link href="{% static 'css/vendors/foundation.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/vendors/foundation-icons.css' %}" rel='stylesheet' type='text/css'>
+    <link href="{% static 'css/vendors/foundation-icons/foundation-icons.css' %}" rel="stylesheet" />
     <link href="{% static 'css/vendors/orbit.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
@@ -26,31 +26,30 @@
         <div class="top-bar-left">
             <ul class="menu">
                 <li class="menu-text">Restaurantes</li>
-                <!--
-        <li><a href="#">One</a></li>
-        <li><a href="#">Two</a></li>
-      -->
             </ul>
         </div>
         <div class="top-bar-right">
             <ul class="menu">
                 <li>
-                    <a class="button" data-open="auth">Acceso</a>
+                  <a class="button" data-open="login">Acceder</a>
+                </li>
+                <li>
+                  <a class="button" data-open="logup">Registrarse</a>
                 </li>
 
-                <div id="auth"class="reveal" data-reveal aria-labelledby="Acceso" aria-hidden="true" role="dialog">
+                <div id="login" class="reveal" data-reveal aria-labelledby="Acceder" aria-hidden="true" role="dialog" style="position: absolute; top: 50%; left: 50%; margin-left: -300px;">
                     <div class="row">
                         <div class="large-6 columns auth-plain">
                             <div class="signup-panel left-solid">
-                                <p class="text-center">Usuarios registrados</p>
+                                <p class="text-center" style="font-size: 25px; font-weight: bold;">Usuarios registrados</p>
                                 <form method="post" action="/app/login/">
                                     {% csrf_token %}
                                     <div class="row collapse">
                                         <div class="small-2 columns">
-                                            <span class="prefix"><i class="fi-torso-female"></i></span>
+                                            <span class="prefix"><i class="fi-torso"></i></span>
                                         </div>
                                         <div class="small-10 columns">
-                                            <input name="usuario" type="text" placeholder="usuario">
+                                            <input name="usuario" type="text" placeholder="usuario" required>
                                         </div>
                                     </div>
                                     <div class="row collapse">
@@ -58,28 +57,68 @@
                                             <span class="prefix"><i class="fi-lock"></i></span>
                                         </div>
                                         <div class="small-10 columns">
-                                            <input name="password" type="password" placeholder="password">
+                                            <input name="password" type="password" placeholder="password" required>
                                         </div>
                                     </div>
-                                    <input type="submit"class="button expanded" value="Iniciar sesión">
+                                    <input type="submit"class="button expanded" value="Iniciar sesión" required>
                                 </form>
                             </div>
                         </div>
                         <div class="large-6 columns auth-plain">
                             <div class="signup-panel newusers">
-                                <p class="text-center">¿Nuevo usuario?</p>
+                                <p class="text-center" style="font-size: 25px; font-weight: bold;">¿Nuevo usuario?</p>
                                 <p>Es necesario que se registre para tener un acceso completo al portal.</p>
                                 <br style="line-height: 44px;">
-                                <a href="#"class="button expanded">Registrarse</a>
+                                <a class="button expanded" data-open="logup">Registrarse</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--
-        <li><a href="#">Four</a></li>
-        <li><a href="#">Five</a></li>
-        <li><a href="#">Six</a></li>
-      -->
+
+                <div id="logup" class="reveal tiny" data-reveal aria-labelledby="Registrarse" aria-hidden="true" role="dialog" style="position: absolute; top: 50%; left: 50%; margin-left: -300px;">
+                    <div class="row">
+                          <div class="signup-panel left-solid">
+                              <p class="text-center" style="font-size: 25px; font-weight: bold;">Nuevos usuarios</p>
+                              <form method="post" action="/app/logup/">
+                                  {% csrf_token %}
+                                  <div class="row collapse">
+                                      <div class="small-4 columns">
+                                          <span class="prefix">Usuario</i></span>
+                                      </div>
+                                      <div class="small-8 columns">
+                                          <input name="usuario" type="text" required>
+                                      </div>
+                                  </div>
+                                  <div class="row collapse">
+                                      <div class="small-4 columns">
+                                          <span class="prefix">Correo electrónico</i></span>
+                                      </div>
+                                      <div class="small-8 columns">
+                                          <input name="email" type="email" required>
+                                      </div>
+                                  </div>
+                                  <div class="row collapse">
+                                      <div class="small-4 columns">
+                                          <span class="prefix">Contraseña</span>
+                                      </div>
+                                      <div class="small-8 columns">
+                                          <input name="password" type="password" required>
+                                      </div>
+                                  </div>
+                                  <div class="row collapse">
+                                      <div class="small-4 columns">
+                                          <span class="prefix">Repetir<br>contraseña</span>
+                                      </div>
+                                      <div class="small-8 columns">
+                                          <input name="repassword" type="password" required>
+                                      </div>
+                                  </div>
+                                  <br>
+                                  <input type="submit"class="button expanded" value="Registrarse">
+                              </form>
+                          </div>
+                    </div>
+                </div>
             </ul>
         </div>
     </div>
@@ -131,167 +170,13 @@
         </div>
     </div>
     <hr>
-    <!--
-  <div class="row column text-center">
-    <h2>Some Other Neat Products</h2>
-    <hr>
-  </div>
-  <div class="row small-up-2 medium-up-3 large-up-6">
-    <div class="column">
-      <img class="thumbnail" src="http://placehold.it/300x400">
-      <h5>Nulla At Nulla Justo, Eget</h5>
-      <p>$400</p>
-      <a href="#"class="button small expanded hollow">Buy</a>
-    </div>
-    <div class="column">
-      <img class="thumbnail" src="http://placehold.it/300x400">
-      <h5>Nulla At Nulla Justo, Eget</h5>
-      <p>$400</p>
-      <a href="#"class="button small expanded hollow">Buy</a>
-    </div>
-    <div class="column">
-      <img class="thumbnail" src="http://placehold.it/300x400">
-      <h5>Nulla At Nulla Justo, Eget</h5>
-      <p>$400</p>
-      <a href="#"class="button small expanded hollow">Buy</a>
-    </div>
-    <div class="column">
-      <img class="thumbnail" src="http://placehold.it/300x400">
-      <h5>Nulla At Nulla Justo, Eget</h5>
-      <p>$400</p>
-      <a href="#"class="button small expanded hollow">Buy</a>
-    </div>
-    <div class="column">
-      <img class="thumbnail" src="http://placehold.it/300x400">
-      <h5>Nulla At Nulla Justo, Eget</h5>
-      <p>$400</p>
-      <a href="#"class="button small expanded hollow">Buy</a>
-    </div>
-    <div class="column">
-      <img class="thumbnail" src="http://placehold.it/300x400">
-      <h5>Nulla At Nulla Justo, Eget</h5>
-      <p>$400</p>
-      <a href="#"class="button small expanded hollow">Buy</a>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="medium-4 columns">
-      <h4>Top Products</h4>
-      <div class="media-object">
-        <div class="media-object-section">
-          <img class="thumbnail" src="http://placehold.it/100x100">
-        </div>
-        <div class="media-object-section">
-          <h5>Nunc Eu Ullamcorper Orci</h5>
-          <p>Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque.</p>
-        </div>
-      </div>
-      <div class="media-object">
-        <div class="media-object-section">
-          <img class="thumbnail" src="http://placehold.it/100x100">
-        </div>
-        <div class="media-object-section">
-          <h5>Nunc Eu Ullamcorper Orci</h5>
-          <p>Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque.</p>
-        </div>
-      </div>
-      <div class="media-object">
-        <div class="media-object-section">
-          <img class="thumbnail" src="http://placehold.it/100x100">
-        </div>
-        <div class="media-object-section">
-          <h5>Nunc Eu Ullamcorper Orci</h5>
-          <p>Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque.</p>
-        </div>
-      </div>
-    </div>
-    <div class="medium-4 columns">
-      <h4>Top Products</h4>
-      <div class="media-object">
-        <div class="media-object-section">
-          <img class="thumbnail" src="http://placehold.it/100x100">
-        </div>
-        <div class="media-object-section">
-          <h5>Nunc Eu Ullamcorper Orci</h5>
-          <p>Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque.</p>
-        </div>
-      </div>
-      <div class="media-object">
-        <div class="media-object-section">
-          <img class="thumbnail" src="http://placehold.it/100x100">
-        </div>
-        <div class="media-object-section">
-          <h5>Nunc Eu Ullamcorper Orci</h5>
-          <p>Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque.</p>
-        </div>
-      </div>
-      <div class="media-object">
-        <div class="media-object-section">
-          <img class="thumbnail" src="http://placehold.it/100x100">
-        </div>
-        <div class="media-object-section">
-          <h5>Nunc Eu Ullamcorper Orci</h5>
-          <p>Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque.</p>
-        </div>
-      </div>
-    </div>
-    <div class="medium-4 columns">
-      <h4>Top Products</h4>
-      <div class="media-object">
-        <div class="media-object-section">
-          <img class="thumbnail" src="http://placehold.it/100x100">
-        </div>
-        <div class="media-object-section">
-          <h5>Nunc Eu Ullamcorper Orci</h5>
-          <p>Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque.</p>
-        </div>
-      </div>
-      <div class="media-object">
-        <div class="media-object-section">
-          <img class="thumbnail" src="http://placehold.it/100x100">
-        </div>
-        <div class="media-object-section">
-          <h5>Nunc Eu Ullamcorper Orci</h5>
-          <p>Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque.</p>
-        </div>
-      </div>
-      <div class="media-object">
-        <div class="media-object-section">
-          <img class="thumbnail" src="http://placehold.it/100x100">
-        </div>
-        <div class="media-object-section">
-          <h5>Nunc Eu Ullamcorper Orci</h5>
-          <p>Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+
   <div class="callout large secondary">
     <div class="row">
-      <div class="large-4 columns">
-        <h5>Vivamus Hendrerit Arcu Sed Erat Molestie</h5>
-        <p>Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit.</p>
-        </h4>
-      </div>
-      <div class="large-3 large-offset-2 columns">
-        <ul class="menu vertical">
-          <li><a href="#">One</a></li>
-          <li><a href="#">Two</a></li>
-          <li><a href="#">Three</a></li>
-          <li><a href="#">Four</a></li>
-        </ul>
-      </div>
-      <div class="large-3 columns">
-        <ul class="menu vertical">
-          <li><a href="#">One</a></li>
-          <li><a href="#">Two</a></li>
-          <li><a href="#">Three</a></li>
-          <li><a href="#">Four</a></li>
-        </ul>
-      </div>
+      <p class="text-center"> <small>Desarrollado por Germán Martínez Maldonado<br/>© 2016</small> </p>
     </div>
-  -->
+  </div>
+
 
     <script src="{% static "js/vendors/jquery-ui.min.js" %}"></script>
     <script src="{% static "js/vendors/foundation.js" %}"></script>
