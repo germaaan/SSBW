@@ -1,0 +1,11 @@
+ul#votacion, ul#votacion li {
+    margin: 0;
+    padding: 0;
+}
+ul#votacion li {
+    display: inline-block;
+    vertical-align: middle;
+    margin: auto;
+    width: 100px;
+    min-height: 100px;
+}
