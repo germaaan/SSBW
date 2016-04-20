@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app_restaurantes',
+    'registration',
     'rest_framework',
 ]
 
@@ -83,6 +84,12 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+REGISTRATION_OPEN = True
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = '/app/index'
+LOGIN_URL = '/app/index'
 
 if not DEBUG:                              # Para produccion
 	ALLOWED_HOSTS = ['*']

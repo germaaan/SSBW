@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block body_block %}
+<p class="text-center" style="font-size: 25px; font-weight: bold;">Usuarios registrados</p>
+<form method="post" action=".">
+  {% csrf_token %}
+  {{ form.as_p }}
+
+  <input type="submit" value="Entrar" />
+  <input type="hidden" name="next" value="{{ next }}" />
+</form>
+
+{% endblock %}
