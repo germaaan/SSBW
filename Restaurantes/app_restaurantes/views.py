@@ -11,12 +11,6 @@ def index(request):
     context = {'mensaje': 'Hola mundo!', 'restaurantes': r[:4]}
     return render(request, 'base.html', context)
 
-def login(request):
-    return HttpResponse("Usuario: " + request.POST.get('usuario') + " Password: " + request.POST.get('password'))
-
-def logup(request):
-    return HttpResponse("Usuario: " + request.POST.get('usuario') + " Password: " + request.POST.get('password'))
-
 def votar(request):
     r = Restaurante.objects.get(nombre=request.GET.get('restaurante'))
     r.votos = r.votos + 1

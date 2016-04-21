@@ -17,7 +17,7 @@
     <link rel="shortcut icon" type="image/png" href="{% static "img/favicon.ico" %}"/>
 
     <script src="{% static "js/vendors/jquery-2.1.4.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/votar.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/restaurantes.js" %}"></script>
 </head>
 
 <body>
@@ -25,7 +25,7 @@
     <div class="top-bar">
         <div class="top-bar-left">
             <ul class="menu">
-                <li class="menu-text">Restaurantes</li>
+                <li class="menu-text"><a href="/app/index">Restaurantes</a></li>
 
                 {% block body_block %}
                 {% endblock %}
@@ -160,15 +160,14 @@
         {% for r in restaurantes %}
         <div class="column">
             <img class="thumbnail" src="{% static r.foto %}">
-            <h5>{{ r.nombre }}</h5>
+            <h5 id="restaurante" data-nombre="{{ r.nombre }}">{{ r.nombre }}</h5>
             <p>{{ r.direccion }}</p>
-            <ul id="votacion">
-                <!--<li><a href="/app/votar/?restaurante=Restaurante%201"class="button">Votar</a></li>-->
+            <ul>
                 <li>
-                    <button type="button"id="votaciona"class="button">Votar</button>
+                    <button type="button" id="votar" class="button">Votar</button>
                 </li>
                 <li>
-                    <input type="text" name="voto" style="width: 50px; background-color: white" value="{{ r.votos }}" disabled>
+                    <input type="text" id="voto" style="width: 50px; background-color: white" value="{{ r.votos }}" disabled>
                 </li>
             </ul>
         </div>
