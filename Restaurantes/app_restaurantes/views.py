@@ -1,9 +1,19 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.http import JsonResponse
-from rest_framework.decorators import api_view
+
+from django.contrib.auth.models import User
+
+from rest_framework import routers, serializers, viewsets, generics
+from rest_framework.decorators import api_view, throttle_classes, permission_classes
+from rest_framework.throttling import UserRateThrottle
 from rest_framework.response import Response
+from rest_framework.parsers import JSONParser
+
+from django.template.defaultfilters import slugify
+
 from app_restaurantes.models import Restaurante, Plato
+from app_restaurantes.forms import RestauranteForm, PlatoForm
 from app_restaurantes.serializers import RestauranteSerializer, PlatoSerializer
 
 def index(request):
@@ -17,6 +27,18 @@ def votar(request):
     r.save()
 
     return JsonResponse({'votos':r.votos})
+
+@api_view(['GET'])
+def api_restaurantes(request):
+    restaurantes = Restaurante.objects.all()
+    result = RestauranteSerializer(restaurantes, many=True)
+    return Response(result.data)
+
+@api_view(['GET'])
+def api_platos(request):
+    platos = Plato.objects.all()
+    result = PlatoSerializer(platos, many=True)
+    return Response(result.data)
 
 # @api_view(['GET'])
 # def restaurante_coleccion(request):
