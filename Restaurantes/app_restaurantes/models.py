@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 from django.db import models
 from django.template.defaultfilters import slugify
 
@@ -8,7 +10,7 @@ class Restaurante (models.Model):
 	votos = models.IntegerField(default=0)
 	slug = models.SlugField(unique='True')
 
-	def __unicode__(self):
+	def __unicode__(self): #For Python 2, use __str__ on Python 3
 		return self.nombre
 
 	def save(self, *args, **kwargs):
@@ -19,6 +21,10 @@ class Plato (models.Model):
 	restaurante = models.ForeignKey(Restaurante, on_delete=models.CASCADE)
 	nombre = models.CharField(max_length=30)
 	precio = models.DecimalField(max_digits=5, decimal_places=2)
+	slug = models.SlugField(default='')
+
+	def __unicode__(self): #For Python 2, use __str__ on Python 3
+		return self.nombre
 
 	def save(self, *args, **kwargs):
 		self.slug = slugify(self.nombre)

@@ -1,5 +1,5 @@
-DEBUG = True
-ALLOWED_HOSTS = []
+DEBUG = False
+ALLOWED_HOSTS = ['*']
 
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -90,6 +90,3 @@ ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
 LOGIN_REDIRECT_URL = '/app/index'
 LOGIN_URL = '/app/index'
-
-if not DEBUG:                              # Para produccion
-	ALLOWED_HOSTS = ['*']
